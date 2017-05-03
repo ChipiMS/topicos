@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" fx:controller="espotifai.fxml.GeneroController">
+    <VBox>
+        <ListView fx:id="list">
+            
+        </ListView>
+        <HBox fx:id="actions" visible="false" >
+            <Label text="Nombre" />
+            <TextField fx:id="txtNombre" />
+        </HBox>
+        <HBox>
+            <Button fx:id="btnAgregar" text="Agregar"></Button>
+            <Button fx:id="btnModificar" text="Modificar" disable="true" ></Button>
+            <Button fx:id="btnBorrar" text="Borrar" disable="true" ></Button>
+        </HBox>
+    </VBox>
+</AnchorPane>
