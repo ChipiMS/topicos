@@ -6,3 +6,6 @@ Para ver que cosas has cambiado tienes que poner git status
 Para agregar las cosas a las que le has movido le pones git add *
 Luego poner git commit -m "Aquí pones una descripción de lo que hiciste"
 Luego git push origin master y avisar que empujaste
+
+Para agregar usuario que ingresa a la base de datos desde netbeans:
+grant all privileges on chinook.* to topicos@localhost identified by 'TopicosProgra';

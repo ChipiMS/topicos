@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.HomeController">
+    <MenuBar>
+        <menus>
+            <Menu text="Operaciones CRUD">
+                <items>
+                    <MenuItem fx:id="menuEmpleados" text="Empleados" />
+                    <MenuItem fx:id="menuClientes" text="Clientes" />
+                    <MenuItem fx:id="menuArtistasAlbums" text="Artista y álbumes" />
+                    <MenuItem fx:id="menuGeneros" text="Genero" />
+                    <MenuItem fx:id="menuTipoMedios" text="Tipo de medio" />
+                    <MenuItem fx:id="menuPistas" text="Pista" />
+                </items>
+            </Menu>
+            <Menu text="Listas de canciones">
+                <items>
+                    <MenuItem fx:id="menuCrearLista" text="Crear" />
+                </items>
+            </Menu>
+            <Menu text="Comprar">
+                <items>
+                    <MenuItem fx:id="menuComprar" text="Canciones" />
+                </items>
+            </Menu>
+            <Menu text="Reportes">
+                <items>
+                    <MenuItem fx:id="menuReporteEmpleadso" text="Empleados" />
+                    <MenuItem fx:id="menuReportePaises" text="Países" />
+                    <MenuItem fx:id="menuReporteCanciones" text="Canciones" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</AnchorPane>

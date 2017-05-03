@@ -1,49 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotifai;
-
+import database.MySQL;
+import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-/**
- *
- * @author eemsh
- */
 public class Espotifai extends Application {
-    
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        FXMLLoader loader = new FXMLLoader();
+        Parent fxmlHome = null;
+        try{
+            fxmlHome = loader.load(getClass().getResource("fxml/Home.fxml"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        root.getChildren().add(fxmlHome);
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 500, 500);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Espotifai");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
