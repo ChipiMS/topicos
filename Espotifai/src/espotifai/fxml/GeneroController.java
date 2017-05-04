@@ -51,7 +51,7 @@ public class GeneroController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 if(agregando){
-                    if(txtNombre.getText().length() > 0){
+                    if(txtNombre.getText().trim().length() > 0){
                         generodao.insert(new Genero(txtNombre.getText()));
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Guardar");
@@ -86,7 +86,7 @@ public class GeneroController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 Genero g = list.getSelectionModel().getSelectedItem();
-                if(txtNombre.getText().length() > 0){
+                if(txtNombre.getText().trim().length() > 0){
                     g.setName(txtNombre.getText());
                     if(generodao.update(g)){
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
@@ -104,6 +104,7 @@ public class GeneroController implements Initializable {
                         msg.setTitle("Modificar");
                         msg.setHeaderText("Espotifai");
                         msg.setContentText("No se puede modificar");
+                        msg.show();
                     }
                 }
                 else{
@@ -112,7 +113,6 @@ public class GeneroController implements Initializable {
                     msg.setHeaderText("Espotifai");
                     msg.setContentText("Hay que dar un nombre");
                     msg.show();
-
                 }
             }
         });
@@ -132,10 +132,12 @@ public class GeneroController implements Initializable {
                     }
                 }
                 else{
+                    System.out.println("No se puede borrar");
                     Alert msg = new Alert(Alert.AlertType.INFORMATION);
                     msg.setTitle("Borrar");
                     msg.setHeaderText("Espotifai");
                     msg.setContentText("No se puede borrar");
+                    msg.show();
                 }
             }
         });
