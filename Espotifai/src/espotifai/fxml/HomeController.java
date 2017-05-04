@@ -86,11 +86,11 @@ public class HomeController implements Initializable {
                     e.printStackTrace();
                 }
             }
-            /*if(event.getSource() == menuTipoMedios){
+            if(event.getSource() == menuTipoMedios){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
                 try {
-                    rootConsultaPersonas = loader.load(getClass().getResource(".fxml"));
+                    rootConsultaPersonas = loader.load(getClass().getResource("TipoMedio.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
                     stage.setScene(scene);
@@ -98,7 +98,7 @@ public class HomeController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }*/
+            }
             /*if(event.getSource() == menuPistas){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
