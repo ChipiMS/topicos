@@ -151,11 +151,11 @@ public class HomeController implements Initializable {
                     e.printStackTrace();
                 }
             }*/
-            /*if(event.getSource() == menuReportePaises){
+            if(event.getSource() == menuReportePaises){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
                 try {
-                    rootConsultaPersonas = loader.load(getClass().getResource(".fxml"));
+                    rootConsultaPersonas = loader.load(getClass().getResource("Paises.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
                     stage.setScene(scene);
@@ -163,7 +163,7 @@ public class HomeController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }*/
+            }
             /*if(event.getSource() == menuReporteCanciones){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;

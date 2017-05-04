@@ -7,5 +7,18 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.TipoMedioController">
-    
+    <VBox>
+        <ListView fx:id="list">
+            
+        </ListView>
+        <HBox fx:id="actions" visible="false" >
+            <Label text="Nombre" />
+            <TextField fx:id="txtNombre" />
+        </HBox>
+        <HBox>
+            <Button fx:id="btnAgregar" text="Agregar"></Button>
+            <Button fx:id="btnModificar" text="Modificar" disable="true" ></Button>
+            <Button fx:id="btnBorrar" text="Borrar" disable="true" ></Button>
+        </HBox>
+    </VBox>
 </AnchorPane>

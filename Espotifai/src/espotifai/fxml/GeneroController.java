@@ -132,7 +132,6 @@ public class GeneroController implements Initializable {
                     }
                 }
                 else{
-                    System.out.println("No se puede borrar");
                     Alert msg = new Alert(Alert.AlertType.INFORMATION);
                     msg.setTitle("Borrar");
                     msg.setHeaderText("Espotifai");
