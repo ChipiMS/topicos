@@ -6,6 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.PaisesController">
-    
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" fx:controller="espotifai.fxml.PaisesController">
+    <VBox prefWidth="600.0">
+        <TableView fx:id="tvPaises" ></TableView>
+        <HBox >
+            <Label text="Dirección y nombre el PDF:"  />
+            <TextField fx:id="dir" text="C:/tmp/Paises" ></TextField>
+            <Button fx:id="btnImprimir"  text="Imprimir PDF" />
+        </HBox>
+    </VBox>
 </AnchorPane>
