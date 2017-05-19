@@ -51,6 +51,19 @@ public class HomeController implements Initializable {
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
                 try {
+                    rootConsultaPersonas = loader.load(getClass().getResource("Empleados.fxml"));
+                    Scene scene = new Scene(rootConsultaPersonas);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }*/
+            /*if(event.getSource() == menuClientes){
+                FXMLLoader loader = new FXMLLoader();
+                Parent rootConsultaPersonas = null;
+                try {
                     rootConsultaPersonas = loader.load(getClass().getResource(".fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
