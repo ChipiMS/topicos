@@ -13,7 +13,7 @@
         </TableView>
         <GridPane fx:id="actions" visible="false" >
             <Label text="EmployeeId=" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtEmployeeId=" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtEmployeeId" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
             <Label text="LastName" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
             <TextField fx:id="txtLastName" GridPane.columnIndex="3" GridPane.rowIndex="0"/> 
             <Label text="FirstName" GridPane.columnIndex="4" GridPane.rowIndex="0"/>

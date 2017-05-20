@@ -3,7 +3,6 @@ package espotifai.fxml;
 import database.MySQL;
 import database.dao.EmpleadosDAO;
 import espotifai.Empleados;
-import espotifai.TipoMedio;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
@@ -13,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 public class EmpleadosController implements Initializable {
     @FXML
     Button btnAgregar;
@@ -22,7 +21,7 @@ public class EmpleadosController implements Initializable {
     @FXML
     Button btnBorrar;
     @FXML
-    HBox actions;
+    GridPane actions;
     @FXML
     TextField txtEmployeeId, txtLastName, txtFirstName, txtTitle, 
               txtAddress, txtCity, txtState, txtCountry, txtPostalCode, txtPhone, 
