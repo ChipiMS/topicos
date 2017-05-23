@@ -35,7 +35,7 @@
             <Label text="Email" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
             <TextField fx:id="txtEmail" GridPane.columnIndex="7" GridPane.rowIndex="1"/> 
             <Label text="ReportsTo" GridPane.columnIndex="8" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtReportsTo" GridPane.columnIndex="9" GridPane.rowIndex="1"/> 
+            <ComboBox fx:id="cmbReportsTo" GridPane.columnIndex="9" GridPane.rowIndex="1"/> 
             <Label text="BirthDate" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <DatePicker fx:id="dpBirthDate" GridPane.columnIndex="1" GridPane.rowIndex="2"/> 
             <Label text="HireDate" GridPane.columnIndex="2" GridPane.rowIndex="2"/>

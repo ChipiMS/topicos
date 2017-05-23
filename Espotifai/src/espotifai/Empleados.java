@@ -165,6 +165,6 @@ public class Empleados {
     }
     @Override
     public String toString() {
-        return FirstName;
+        return FirstName +" "+ LastName;
     }
 }

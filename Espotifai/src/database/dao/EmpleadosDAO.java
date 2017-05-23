@@ -123,7 +123,7 @@ public class EmpleadosDAO {
     public Boolean update(Empleados empleados) {
         try {
             String query = "update Employee "
-                    + " set LastName = ?, set FirstName = ?, set Title = ?, set Address = ?, set City = ?, set State = ?, set Country = ?, set PostalCode = ?, set Phone = ?, set Fax = ?, set Email = ?, set ReportsTo = ?, set BirthDate = ?, set HireDate = ?"
+                    + " set LastName = ?, FirstName = ?, Title = ?, Address = ?, City = ?, State = ?, Country = ?, PostalCode = ?, Phone = ?, Fax = ?, Email = ?, ReportsTo = ?, BirthDate = ?, HireDate = ?"
                     + " where EmployeeId = ?";
             PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             st.setString(1,empleados.getLastName());

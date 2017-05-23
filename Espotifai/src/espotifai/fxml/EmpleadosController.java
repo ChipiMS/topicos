@@ -13,12 +13,14 @@ import java.time.format.DateTimeFormatter;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -46,21 +48,25 @@ public class EmpleadosController implements Initializable {
     @FXML
     DatePicker dpBirthDate, dpHireDate;
     @FXML
+    ComboBox cmbReportsTo;
+    @FXML
     TextField txtLastName, txtFirstName, txtTitle, 
               txtAddress, txtCity, txtState, txtCountry, txtPostalCode, txtPhone, 
-              txtFax, txtEmail, txtReportsTo;
+              txtFax, txtEmail;
     @FXML
     TableView<Empleados> table;
-    TableColumn LastNameCol,FirstNameCol,TitleCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,
+    TableColumn EmployeeIdCol,LastNameCol,FirstNameCol,TitleCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,
                 FaxCol,EmailCol,ReportsToCol,BirthDateCol,HireDateCol;
     Boolean agregando = false;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
     SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+    ObservableList datos;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     MySQL db = new MySQL();
         db.Connect();
         EmpleadosDAO empleadodao = new EmpleadosDAO(db.getConnection());
+        EmployeeIdCol = new TableColumn("ID");
         LastNameCol = new TableColumn("LastName");
         FirstNameCol = new TableColumn("FirstName");
         TitleCol = new TableColumn("Title");
@@ -75,6 +81,7 @@ public class EmpleadosController implements Initializable {
         ReportsToCol = new TableColumn("ReportsTo");
         BirthDateCol = new TableColumn("BirthDate");
         HireDateCol = new TableColumn("HireDate");
+        EmployeeIdCol.setCellValueFactory(new PropertyValueFactory("EmployeeId"));
         LastNameCol.setCellValueFactory(new PropertyValueFactory("LastName"));
         FirstNameCol.setCellValueFactory(new PropertyValueFactory("FirstName"));
         TitleCol.setCellValueFactory(new PropertyValueFactory("Title"));
@@ -89,11 +96,14 @@ public class EmpleadosController implements Initializable {
         ReportsToCol.setCellValueFactory(new PropertyValueFactory("ReportsTo"));
         BirthDateCol.setCellValueFactory(new PropertyValueFactory("BirthDate"));
         HireDateCol.setCellValueFactory(new PropertyValueFactory("HireDate"));
-        table.getColumns().addAll(LastNameCol,FirstNameCol,TitleCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,FaxCol,EmailCol,ReportsToCol,BirthDateCol,HireDateCol);
-        table.setItems(empleadodao.findAllObs());
+        table.getColumns().addAll(EmployeeIdCol,LastNameCol,FirstNameCol,TitleCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,FaxCol,EmailCol,ReportsToCol,BirthDateCol,HireDateCol);
+        datos = empleadodao.findAllObs();
+        cmbReportsTo.setItems(datos);
+        table.setItems(datos);
         table.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
+                datos = empleadodao.findAllObs();
                 Empleados g = table.getSelectionModel().getSelectedItem();
                 btnModificar.setDisable(false);
                 btnBorrar.setDisable(false);
@@ -108,7 +118,12 @@ public class EmpleadosController implements Initializable {
                 txtPhone.setText(g.getPhone());
                 txtFax.setText(g.getFax());
                 txtEmail.setText(g.getEmail());
-                txtReportsTo.setText(Integer.toString(g.getReportsTo()));
+                for (int i=0; i<datos.size();i++){
+                    Empleados tilin = (Empleados)datos.get(i);
+                    if(g.getReportsTo() == tilin.getReportsTo()){
+                        cmbReportsTo.getSelectionModel().clearAndSelect(g.getReportsTo());
+                    }
+                }
                 dpBirthDate.setValue(LOCAL_DATE(g.getBirthDate().toString()));
                 dpHireDate.setValue(LOCAL_DATE(g.getHireDate().toString()));
                 actions.setVisible(true);
@@ -130,10 +145,12 @@ public class EmpleadosController implements Initializable {
                         txtPhone.getText().trim().length() > 0 &&
                         txtFax.getText().trim().length() > 0 &&
                         txtEmail.getText().trim().length() > 0 &&
-                        txtReportsTo.getText().trim().length() > 0 &&
+                        cmbReportsTo.getSelectionModel() != null &&
                         dpBirthDate.getValue() != null &&
-                        dpHireDate.getValue() != null)
-                    {
+                        dpHireDate.getValue() != null){
+                        
+                        
+                        Empleados temp = (Empleados) cmbReportsTo.getSelectionModel().getSelectedItem();
                         Date HireDate = Date.valueOf(dpHireDate.getValue());
                         Date BirthDate = Date.valueOf(dpBirthDate.getValue());
                         empleadodao.insert(new Empleados(
@@ -148,14 +165,16 @@ public class EmpleadosController implements Initializable {
                         txtPhone.getText(),
                         txtFax.getText(),
                         txtEmail.getText(),
-                        Integer.valueOf(txtReportsTo.getText()),HireDate,BirthDate));
+                        temp.getEmployeeId(),HireDate,BirthDate));
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Guardar");
                         msg.setHeaderText("Espotifai");
                         msg.setContentText("Información guardada correctamente");
                         Optional<ButtonType> respuesta = msg.showAndWait();
                         if(respuesta.get() == ButtonType.OK){
-                            table.setItems(empleadodao.findAllObs());
+                            datos = empleadodao.findAllObs();
+                            cmbReportsTo.setItems(datos);
+                            table.setItems(datos);
                             agregando = false;
                             actions.setVisible(false);
                         
@@ -164,7 +183,7 @@ public class EmpleadosController implements Initializable {
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Guardar");
                         msg.setHeaderText("Espotifai");
-                        msg.setContentText("Hay que dar un nombre");
+                        msg.setContentText("Hay campos faltantes");
                         msg.show();
                         
                     }
@@ -184,7 +203,7 @@ public class EmpleadosController implements Initializable {
                     txtPhone.setText("");
                     txtFax.setText("");
                     txtEmail.setText("");
-                    txtReportsTo.setText("");
+                    cmbReportsTo.setSelectionModel(null); 
                     dpHireDate.setValue(null);
                     dpBirthDate.setValue(null);
                     actions.setVisible(true);
@@ -203,9 +222,11 @@ public class EmpleadosController implements Initializable {
                     msg.setContentText("Empleado borrado correctamente");
                     Optional<ButtonType> respuesta = msg.showAndWait();
                     if(respuesta.get() == ButtonType.OK){
-                        table.setItems(empleadodao.findAllObs());
-                            agregando = false;
-                            actions.setVisible(false);
+                        datos = empleadodao.findAllObs();
+                        cmbReportsTo.setItems(datos);
+                        table.setItems(datos);
+                        agregando = false;
+                        actions.setVisible(false);
                     }
                 }
                 else{
@@ -213,6 +234,69 @@ public class EmpleadosController implements Initializable {
                     msg.setTitle("Borrar");
                     msg.setHeaderText("Espotifai");
                     msg.setContentText("No se puede borrar");
+                    msg.show();
+                }
+            }
+        });
+        btnModificar.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                Empleados g = table.getSelectionModel().getSelectedItem();
+                if(txtLastName.getText().trim().length() > 0 &&
+                        txtFirstName.getText().trim().length() > 0 &&
+                        txtTitle.getText().trim().length() > 0 && 
+                        txtAddress.getText().trim().length() > 0 &&
+                        txtCity.getText().trim().length() > 0 &&
+                        txtState.getText().trim().length() > 0 &&
+                        txtCountry.getText().trim().length() > 0 &&
+                        txtPostalCode.getText().trim().length() > 0 &&
+                        txtPhone.getText().trim().length() > 0 &&
+                        txtFax.getText().trim().length() > 0 &&
+                        txtEmail.getText().trim().length() > 0 &&
+                        cmbReportsTo.getSelectionModel() != null &&
+                        dpBirthDate.getValue() != null &&
+                        dpHireDate.getValue() != null){
+                        Empleados temp = (Empleados) cmbReportsTo.getSelectionModel().getSelectedItem();
+                        Date HireDate = Date.valueOf(dpHireDate.getValue());
+                        Date BirthDate = Date.valueOf(dpBirthDate.getValue());
+                    g.setLastName(txtLastName.getText());
+                    g.setFirstName(txtFirstName.getText());
+                    g.setTitle(txtTitle.getText());
+                    g.setAddress(txtAddress.getText());
+                    g.setCity(txtCity.getText());
+                    g.setState(txtState.getText());
+                    g.setCountry(txtCountry.getText());
+                    g.setPostalCode(txtPostalCode.getText());
+                    g.setPhone(txtPhone.getText());
+                    g.setFax(txtFax.getText());
+                    g.setEmail(txtEmail.getText());
+                    g.setEmployeeId(temp.getEmployeeId());
+                    g.setBirthDate(BirthDate);
+                    g.setHireDate(HireDate);
+                    if(empleadodao.update(g)){
+                        Alert msg = new Alert(Alert.AlertType.INFORMATION);
+                        msg.setTitle("Borrar");
+                        msg.setHeaderText("Espotifai");
+                        msg.setContentText("Empleado modificado correctamente");
+                        Optional<ButtonType> respuesta = msg.showAndWait();
+                        if(respuesta.get() == ButtonType.OK){
+                            table.setItems(empleadodao.findAllObs());
+                            actions.setVisible(false);
+                        }
+                    }
+                    else{
+                        Alert msg = new Alert(Alert.AlertType.INFORMATION);
+                        msg.setTitle("Modificar");
+                        msg.setHeaderText("Espotifai");
+                        msg.setContentText("No se puede modificar");
+                        msg.show();
+                    }
+                }
+                else{
+                    Alert msg = new Alert(Alert.AlertType.INFORMATION);
+                    msg.setTitle("Modificar");
+                    msg.setHeaderText("Espotifai");
+                    msg.setContentText("Hay campos faltantes");
                     msg.show();
                 }
             }
