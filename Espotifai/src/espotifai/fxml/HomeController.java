@@ -12,8 +12,6 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 public class HomeController implements Initializable {
     @FXML
-    MenuItem menuEmpleados;
-    @FXML
     MenuItem menuClientes;
     @FXML
     MenuItem menuArtistasAlbums;
@@ -33,9 +31,10 @@ public class HomeController implements Initializable {
     MenuItem menuReportePaises;
     @FXML
     MenuItem menuReporteCanciones;
+    @FXML
+    MenuItem menuEmpleados;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        menuEmpleados.setOnAction(listenerMenuItems);
         menuClientes.setOnAction(listenerMenuItems);
         menuArtistasAlbums.setOnAction(listenerMenuItems);
         menuGeneros.setOnAction(listenerMenuItems);
@@ -46,6 +45,7 @@ public class HomeController implements Initializable {
         menuReporteEmpleadso.setOnAction(listenerMenuItems);
         menuReportePaises.setOnAction(listenerMenuItems);
         menuReporteCanciones.setOnAction(listenerMenuItems);
+        menuEmpleados.setOnAction(listenerMenuItems);
     }
     EventHandler<ActionEvent> listenerMenuItems = new EventHandler<ActionEvent>(){
         @Override

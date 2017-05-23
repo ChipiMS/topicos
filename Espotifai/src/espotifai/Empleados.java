@@ -1,13 +1,14 @@
 package espotifai;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Empleados {
     String LastName, FirstName, Title, Address, City, State, Country, PostalCode, Phone, Fax, Email;
     int EmployeeId,ReportsTo;
-    Date BirthDay, HireDate;
+    Date BirthDate, HireDate;
 
-    public Empleados(int EmployeeId, String LastName, String FirstName, String Title, String Address, String City, String State, String Country, String PostalCode, String Phone, String Fax, String Email, int ReportsTo, Date BirthDay, Date HireDate) {
+    public Empleados(int EmployeeId, String LastName, String FirstName, String Title, String Address, String City, String State, String Country, String PostalCode, String Phone, String Fax, String Email, int ReportsTo, Date BirthDate, Date HireDate) {
         this.LastName = LastName;
         this.FirstName = FirstName;
         this.Title = Title;
@@ -21,11 +22,11 @@ public class Empleados {
         this.Email = Email;
         this.EmployeeId = EmployeeId;
         this.ReportsTo = ReportsTo;
-        this.BirthDay = BirthDay;
+        this.BirthDate = BirthDate;
         this.HireDate = HireDate;
     }
 
-    public Empleados(String LastName, String FirstName, String Title, String Address, String City, String State, String Country, String PostalCode, String Phone, String Fax, String Email, int ReportsTo, Date BirthDay, Date HireDate) {
+    public Empleados(String LastName, String FirstName, String Title, String Address, String City, String State, String Country, String PostalCode, String Phone, String Fax, String Email, int ReportsTo, Date BirthDate, Date HireDate) {
         this.LastName = LastName;
         this.FirstName = FirstName;
         this.Title = Title;
@@ -38,7 +39,7 @@ public class Empleados {
         this.Fax = Fax;
         this.Email = Email;
         this.ReportsTo = ReportsTo;
-        this.BirthDay = BirthDay;
+        this.BirthDate = BirthDate;
         this.HireDate = HireDate;
     }
     
@@ -147,12 +148,12 @@ public class Empleados {
         this.ReportsTo = ReportsTo;
     }
 
-    public Date getBirthDay() {
-        return BirthDay;
+    public Date getBirthDate() {
+        return BirthDate;
     }
 
-    public void setBirthDay(Date BirthDay) {
-        this.BirthDay = BirthDay;
+    public void setBirthDate(Date BirthDate) {
+        this.BirthDate = BirthDate;
     }
 
     public Date getHireDate() {

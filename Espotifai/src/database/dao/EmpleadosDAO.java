@@ -15,14 +15,14 @@ public class EmpleadosDAO {
     public ObservableList<Empleados> findAll() {
         ObservableList<Empleados> empleados = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM Empleados";
+            String query = "SELECT * FROM Employee";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while(rs.next()) {
                 empleados.add(new Empleados(rs.getInt("EmployeeId"),rs.getString("LastName"),rs.getString("FirstName"),rs.getString("Title"),rs.getString("Address"),
                                             rs.getString("City"),rs.getString("State"),rs.getString("Country"),rs.getString("PostalCode"),
                                             rs.getString("Phone"),rs.getString("Fax"),rs.getString("Email"),
-                                            rs.getInt("ReportsTo"),rs.getDate("BirthDay"),rs.getDate("HireDate"))); 
+                                            rs.getInt("ReportsTo"),rs.getDate("BirthDate"),rs.getDate("HireDate"))); 
             }
             rs.close();
             st.close();
@@ -48,8 +48,8 @@ public class EmpleadosDAO {
     public Boolean insert(Empleados empleados) {
         try {
             String query = "insert into Employee "
-                    + " (EmployeeId) (LastName) (FirstName) (Title) (Address) (City) (State) (Country) (PostalCode) (Phone) (Fax) (Email) (ReportsTo) (BirthDay) (HireDate)"
-                    + " values (?) (?) (?) (?) (?) (?) (?) (?) (?) (?) (?) (?) (?) (?) (?)";
+                    + " (LastName, FirstName, Title, Address, City, State, Country, PostalCode, Phone, Fax, Email, ReportsTo, BirthDate, HireDate)"
+                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             st.setInt(1,empleados.getEmployeeId());
             st.setString(2,empleados.getLastName());
@@ -64,7 +64,7 @@ public class EmpleadosDAO {
             st.setString(11,empleados.getFax());
             st.setString(12,empleados.getEmail());
             st.setInt(13,empleados.getReportsTo());
-            st.setDate(14,empleados.getBirthDay());
+            st.setDate(14,empleados.getBirthDate());
             st.setDate(15,empleados.getHireDate());
             st.execute();
             return true;
@@ -75,10 +75,56 @@ public class EmpleadosDAO {
         
         return false;
     }
+    public ObservableList<Empleados> findAllObs() {
+        ObservableList<Empleados> empleados = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT * FROM Employee";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()) {
+                Empleados e = new Empleados(rs.getInt("EmployeeId"),rs.getString("LastName"),rs.getString("FirstName"),rs.getString("Title"),rs.getString("Address"),
+                                            rs.getString("City"),rs.getString("State"),rs.getString("Country"),rs.getString("PostalCode"),
+                                            rs.getString("Phone"),rs.getString("Fax"),rs.getString("Email"),
+                                            rs.getInt("ReportsTo"),rs.getDate("BirthDate"),rs.getDate("HireDate")
+                        );
+                empleados.add(e);
+            }
+            rs.close();
+            st.close();
+ 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return empleados;
+    }
+    public ObservableList<Empleados> reporte(){
+        ObservableList<Empleados> empleados = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT * FROM Employee";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()) {
+                Empleados e = new Empleados(rs.getInt("EmployeeId"),rs.getString("LastName"),rs.getString("FirstName"),rs.getString("Title"),rs.getString("Address"),
+                                            rs.getString("City"),rs.getString("State"),rs.getString("Country"),rs.getString("PostalCode"),
+                                            rs.getString("Phone"),rs.getString("Fax"),rs.getString("Email"),
+                                            rs.getInt("ReportsTo"),rs.getDate("BirthDate"),rs.getDate("HireDate")
+                        );
+                empleados.add(e);
+            }
+            rs.close();
+            st.close();
+ 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return empleados;
+    }
     public Boolean update(Empleados empleados) {
         try {
             String query = "update Employee "
-                    + " set LastName = ?, set FirstName = ?, set Title = ?, set Address = ?, set City = ?, set State = ?, set Country = ?, set PostalCode = ?, set Phone = ?, set Fax = ?, set Email = ?, set ReportsTo = ?, set BirthDay = ?, set HireDate = ?"
+                    + " set LastName = ?, set FirstName = ?, set Title = ?, set Address = ?, set City = ?, set State = ?, set Country = ?, set PostalCode = ?, set Phone = ?, set Fax = ?, set Email = ?, set ReportsTo = ?, set BirthDate = ?, set HireDate = ?"
                     + " where EmployeeId = ?";
             PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             st.setString(1,empleados.getLastName());
@@ -93,7 +139,7 @@ public class EmpleadosDAO {
             st.setString(10,empleados.getFax());
             st.setString(11,empleados.getEmail());
             st.setInt(12,empleados.getReportsTo());
-            st.setDate(13,empleados.getBirthDay());
+            st.setDate(13,empleados.getBirthDate());
             st.setDate(14,empleados.getHireDate());
             st.setInt(15,empleados.getEmployeeId());
             st.execute();

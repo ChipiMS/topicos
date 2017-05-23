@@ -6,42 +6,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.EmpleadosController">
-    <VBox prefWidth="600.0">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1400.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.EmpleadosController">
+    <VBox prefWidth="1400.0">
         <TableView fx:id="table">
             
         </TableView>
         <GridPane fx:id="actions" visible="false" >
-            <Label text="EmployeeId=" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtEmployeeId" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Label text="LastName" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtLastName" GridPane.columnIndex="3" GridPane.rowIndex="0"/> 
-            <Label text="FirstName" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtFirstName" GridPane.columnIndex="5" GridPane.rowIndex="0"/> 
-            <Label text="Title" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtTitle" GridPane.columnIndex="7" GridPane.rowIndex="0"/> 
-            <Label text="Address" GridPane.columnIndex="8" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtAddress" GridPane.columnIndex="9" GridPane.rowIndex="0"/> 
-            <Label text="City" GridPane.columnIndex="10" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtCity" GridPane.columnIndex="11" GridPane.rowIndex="0"/> 
-            <Label text="State" GridPane.columnIndex="12" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtState" GridPane.columnIndex="13" GridPane.rowIndex="0"/> 
-            <Label text="Country" GridPane.columnIndex="14" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtCountry" GridPane.columnIndex="0" GridPane.rowIndex="1"/> 
-            <Label text="PostalCode" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtPostalCode" GridPane.columnIndex="2" GridPane.rowIndex="1"/> 
-            <Label text="Phone" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtPhone" GridPane.columnIndex="4" GridPane.rowIndex="1"/> 
-            <Label text="Fax" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtFax" GridPane.columnIndex="6" GridPane.rowIndex="1"/> 
-            <Label text="Email" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtEmail" GridPane.columnIndex="8" GridPane.rowIndex="1"/> 
-            <Label text="ReportsTo" GridPane.columnIndex="9" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtReportsTo" GridPane.columnIndex="10" GridPane.rowIndex="1"/> 
-            <Label text="BirthDay" GridPane.columnIndex="11" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtBirthDay" GridPane.columnIndex="12" GridPane.rowIndex="1"/> 
-            <Label text="HireDate" GridPane.columnIndex="13" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtHireDate" GridPane.columnIndex="14" GridPane.rowIndex="1"/>
+            <Label text="LastName" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtLastName" GridPane.columnIndex="1" GridPane.rowIndex="0"/> 
+            <Label text="FirstName" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtFirstName" GridPane.columnIndex="3" GridPane.rowIndex="0"/> 
+            <Label text="Title" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtTitle" GridPane.columnIndex="5" GridPane.rowIndex="0"/> 
+            <Label text="Address" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtAddress" GridPane.columnIndex="7" GridPane.rowIndex="0"/> 
+            <Label text="City" GridPane.columnIndex="8" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtCity" GridPane.columnIndex="9" GridPane.rowIndex="0"/> 
+            <Label text="State" GridPane.columnIndex="10" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtState" GridPane.columnIndex="11" GridPane.rowIndex="0"/> 
+            <Label text="Country" GridPane.columnIndex="12" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtCountry" GridPane.columnIndex="13" GridPane.rowIndex="0"/> 
+            <Label text="PostalCode" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtPostalCode" GridPane.columnIndex="1" GridPane.rowIndex="1"/> 
+            <Label text="Phone" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtPhone" GridPane.columnIndex="3" GridPane.rowIndex="1"/> 
+            <Label text="Fax" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtFax" GridPane.columnIndex="5" GridPane.rowIndex="1"/> 
+            <Label text="Email" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtEmail" GridPane.columnIndex="7" GridPane.rowIndex="1"/> 
+            <Label text="ReportsTo" GridPane.columnIndex="8" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtReportsTo" GridPane.columnIndex="9" GridPane.rowIndex="1"/> 
+            <Label text="BirthDate" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dpBirthDate" GridPane.columnIndex="1" GridPane.rowIndex="2"/> 
+            <Label text="HireDate" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <DatePicker fx:id="dpHireDate" GridPane.columnIndex="3" GridPane.rowIndex="2"/> 
+            
         </GridPane>
         <HBox>
             <Button fx:id="btnAgregar" text="Agregar"></Button>
