@@ -49,23 +49,22 @@ public class EmpleadosDAO {
         try {
             String query = "insert into Employee "
                     + " (LastName, FirstName, Title, Address, City, State, Country, PostalCode, Phone, Fax, Email, ReportsTo, BirthDate, HireDate)"
-                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-            st.setInt(1,empleados.getEmployeeId());
-            st.setString(2,empleados.getLastName());
-            st.setString(3,empleados.getFirstName());
-            st.setString(4,empleados.getTitle());
-            st.setString(5,empleados.getAddress());
-            st.setString(6,empleados.getCity());
-            st.setString(7,empleados.getState());
-            st.setString(8,empleados.getCountry());
-            st.setString(9,empleados.getPostalCode());
-            st.setString(10,empleados.getPhone());
-            st.setString(11,empleados.getFax());
-            st.setString(12,empleados.getEmail());
-            st.setInt(13,empleados.getReportsTo());
-            st.setDate(14,empleados.getBirthDate());
-            st.setDate(15,empleados.getHireDate());
+            st.setString(1,empleados.getLastName());
+            st.setString(2,empleados.getFirstName());
+            st.setString(3,empleados.getTitle());
+            st.setString(4,empleados.getAddress());
+            st.setString(5,empleados.getCity());
+            st.setString(6,empleados.getState());
+            st.setString(7,empleados.getCountry());
+            st.setString(8,empleados.getPostalCode());
+            st.setString(9,empleados.getPhone());
+            st.setString(10,empleados.getFax());
+            st.setString(11,empleados.getEmail());
+            st.setInt(12,empleados.getReportsTo());
+            st.setDate(13,empleados.getBirthDate());
+            st.setDate(14,empleados.getHireDate());
             st.execute();
             return true;
         } catch (Exception e) {

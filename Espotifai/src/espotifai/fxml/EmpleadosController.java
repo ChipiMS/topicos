@@ -192,7 +192,31 @@ public class EmpleadosController implements Initializable {
                 }
             }
         });
-        
+        btnBorrar.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                Empleados g = table.getSelectionModel().getSelectedItem();
+                if(empleadodao.delete(g.getEmployeeId())){
+                    Alert msg = new Alert(Alert.AlertType.INFORMATION);
+                    msg.setTitle("Borrar");
+                    msg.setHeaderText("Espotifai");
+                    msg.setContentText("Empleado borrado correctamente");
+                    Optional<ButtonType> respuesta = msg.showAndWait();
+                    if(respuesta.get() == ButtonType.OK){
+                        table.setItems(empleadodao.findAllObs());
+                            agregando = false;
+                            actions.setVisible(false);
+                    }
+                }
+                else{
+                    Alert msg = new Alert(Alert.AlertType.INFORMATION);
+                    msg.setTitle("Borrar");
+                    msg.setHeaderText("Espotifai");
+                    msg.setContentText("No se puede borrar");
+                    msg.show();
+                }
+            }
+        });
     }    
     
 }
