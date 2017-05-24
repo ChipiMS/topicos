@@ -1,15 +1,9 @@
 package espotifai.fxml;
 
 import database.MySQL;
-import database.dao.EmpleadosDAO;
-import espotifai.Empleados;
-import espotifai.TipoMedio;
+import database.dao.ClientesDAO;
+import espotifai.Clientes;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,13 +22,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-public class EmpleadosController implements Initializable {
-    public static final LocalDate LOCAL_DATE (String dateString){
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDate localDate = LocalDate.parse(dateString, formatter);
-    return localDate;
-        }
+
+public class ClientesController implements Initializable {
     @FXML
     Button btnAgregar;
     @FXML
@@ -44,30 +33,26 @@ public class EmpleadosController implements Initializable {
     @FXML
     GridPane actions;
     @FXML
-    DatePicker dpBirthDate, dpHireDate;
+    ComboBox cmbSupportRepId;
     @FXML
-    ComboBox cmbReportsTo;
-    @FXML
-    TextField txtLastName, txtFirstName, txtTitle, 
+    TextField txtLastName, txtFirstName, txtCompany, 
               txtAddress, txtCity, txtState, txtCountry, txtPostalCode, txtPhone, 
               txtFax, txtEmail;
     @FXML
-    TableView<Empleados> table;
-    TableColumn EmployeeIdCol,LastNameCol,FirstNameCol,TitleCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,
-                FaxCol,EmailCol,ReportsToCol,BirthDateCol,HireDateCol;
+    TableView<Clientes> table;
+    TableColumn CustomerIdCol,LastNameCol,FirstNameCol,CompanyCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,
+                FaxCol,EmailCol,SupportRepIdCol;
     Boolean agregando = false;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
     ObservableList datos;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    MySQL db = new MySQL();
+        MySQL db = new MySQL();
         db.Connect();
-        EmpleadosDAO empleadodao = new EmpleadosDAO(db.getConnection());
-        EmployeeIdCol = new TableColumn("ID");
+        ClientesDAO clientesdao = new ClientesDAO(db.getConnection());
+        CustomerIdCol = new TableColumn("ID");
         LastNameCol = new TableColumn("LastName");
         FirstNameCol = new TableColumn("FirstName");
-        TitleCol = new TableColumn("Title");
+        CompanyCol = new TableColumn("Company");
         AddressCol = new TableColumn("Address");
         CityCol = new TableColumn("City");
         StateCol = new TableColumn("State");
@@ -76,13 +61,11 @@ public class EmpleadosController implements Initializable {
         PhoneCol = new TableColumn("Phone");
         FaxCol = new TableColumn("Fax");
         EmailCol = new TableColumn("Email");
-        ReportsToCol = new TableColumn("ReportsTo");
-        BirthDateCol = new TableColumn("BirthDate");
-        HireDateCol = new TableColumn("HireDate");
-        EmployeeIdCol.setCellValueFactory(new PropertyValueFactory("EmployeeId"));
+        SupportRepIdCol = new TableColumn("SupportRepId");
+        CustomerIdCol.setCellValueFactory(new PropertyValueFactory("CustomerId"));
         LastNameCol.setCellValueFactory(new PropertyValueFactory("LastName"));
         FirstNameCol.setCellValueFactory(new PropertyValueFactory("FirstName"));
-        TitleCol.setCellValueFactory(new PropertyValueFactory("Title"));
+        CompanyCol.setCellValueFactory(new PropertyValueFactory("Company"));
         AddressCol.setCellValueFactory(new PropertyValueFactory("Address"));
         CityCol.setCellValueFactory(new PropertyValueFactory("City"));
         StateCol.setCellValueFactory(new PropertyValueFactory("State"));
@@ -91,23 +74,23 @@ public class EmpleadosController implements Initializable {
         PhoneCol.setCellValueFactory(new PropertyValueFactory("Phone"));
         FaxCol.setCellValueFactory(new PropertyValueFactory("Fax"));
         EmailCol.setCellValueFactory(new PropertyValueFactory("Email"));
-        ReportsToCol.setCellValueFactory(new PropertyValueFactory("ReportsTo"));
-        BirthDateCol.setCellValueFactory(new PropertyValueFactory("BirthDate"));
-        HireDateCol.setCellValueFactory(new PropertyValueFactory("HireDate"));
-        table.getColumns().addAll(EmployeeIdCol,LastNameCol,FirstNameCol,TitleCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,FaxCol,EmailCol,ReportsToCol,BirthDateCol,HireDateCol);
-        datos = empleadodao.findAllObs();
-        cmbReportsTo.setItems(datos);
+        SupportRepIdCol.setCellValueFactory(new PropertyValueFactory("SupportRepId"));
+        table.getColumns().addAll(CustomerIdCol,LastNameCol,FirstNameCol,CompanyCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,FaxCol,EmailCol,SupportRepIdCol);
+        datos = clientesdao.findAllObs();
+        cmbSupportRepId.setItems(datos);
         table.setItems(datos);
+
+        
         table.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                datos = empleadodao.findAllObs();
-                Empleados g = table.getSelectionModel().getSelectedItem();
+                datos = clientesdao.findAllObs();
+                Clientes g = table.getSelectionModel().getSelectedItem();
                 btnModificar.setDisable(false);
                 btnBorrar.setDisable(false);
                 txtLastName.setText(g.getLastName());
                 txtFirstName.setText(g.getFirstName());
-                txtTitle.setText(g.getTitle());
+                txtCompany.setText(g.getCompany());
                 txtAddress.setText(g.getAddress());
                 txtCity.setText(g.getCity());
                 txtState.setText(g.getState());
@@ -117,24 +100,23 @@ public class EmpleadosController implements Initializable {
                 txtFax.setText(g.getFax());
                 txtEmail.setText(g.getEmail());
                 for (int i=0; i<datos.size();i++){
-                    Empleados tilin = (Empleados)datos.get(i);
-                    if(g.getReportsTo() == tilin.getReportsTo()){
-                        cmbReportsTo.getSelectionModel().clearAndSelect(g.getReportsTo());
+                    Clientes tilin = (Clientes)datos.get(i);
+                    if(g.getSupportRepId() == tilin.getSupportRepId()){
+                        cmbSupportRepId.getSelectionModel().clearAndSelect(g.getSupportRepId());
                     }
                 }
-                dpBirthDate.setValue(LOCAL_DATE(g.getBirthDate().toString()));
-                dpHireDate.setValue(LOCAL_DATE(g.getHireDate().toString()));
                 actions.setVisible(true);
                 agregando = false;
             }
         });
+        
         btnAgregar.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
                 if(agregando){
                     if(txtLastName.getText().trim().length() > 0 &&
                         txtFirstName.getText().trim().length() > 0 &&
-                        txtTitle.getText().trim().length() > 0 && 
+                        txtCompany.getText().trim().length() > 0 && 
                         txtAddress.getText().trim().length() > 0 &&
                         txtCity.getText().trim().length() > 0 &&
                         txtState.getText().trim().length() > 0 &&
@@ -143,18 +125,14 @@ public class EmpleadosController implements Initializable {
                         txtPhone.getText().trim().length() > 0 &&
                         txtFax.getText().trim().length() > 0 &&
                         txtEmail.getText().trim().length() > 0 &&
-                        cmbReportsTo.getSelectionModel() != null &&
-                        dpBirthDate.getValue() != null &&
-                        dpHireDate.getValue() != null){
+                        cmbSupportRepId.getSelectionModel() != null){
                         
                         
-                        Empleados temp = (Empleados) cmbReportsTo.getSelectionModel().getSelectedItem();
-                        Date HireDate = Date.valueOf(dpHireDate.getValue());
-                        Date BirthDate = Date.valueOf(dpBirthDate.getValue());
-                        empleadodao.insert(new Empleados(
+                        Clientes temp = (Clientes) cmbSupportRepId.getSelectionModel().getSelectedItem();
+                        clientesdao.insert(new Clientes(
                         txtLastName.getText(),
                         txtFirstName.getText(),
-                        txtTitle.getText(), 
+                        txtCompany.getText(), 
                         txtAddress.getText(),
                         txtCity.getText(),
                         txtState.getText(),
@@ -163,15 +141,15 @@ public class EmpleadosController implements Initializable {
                         txtPhone.getText(),
                         txtFax.getText(),
                         txtEmail.getText(),
-                        temp.getEmployeeId(),HireDate,BirthDate));
+                        temp.getSupportRepId()));
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Guardar");
                         msg.setHeaderText("Espotifai");
                         msg.setContentText("Información guardada correctamente");
                         Optional<ButtonType> respuesta = msg.showAndWait();
                         if(respuesta.get() == ButtonType.OK){
-                            datos = empleadodao.findAllObs();
-                            cmbReportsTo.setItems(datos);
+                            datos = clientesdao.findAllObs();
+                            cmbSupportRepId.setItems(datos);
                             table.setItems(datos);
                             agregando = false;
                             actions.setVisible(false);
@@ -192,7 +170,7 @@ public class EmpleadosController implements Initializable {
                     btnBorrar.setDisable(true);
                     txtLastName.setText("");
                     txtFirstName.setText("");
-                    txtTitle.setText(""); 
+                    txtCompany.setText(""); 
                     txtAddress.setText("");
                     txtCity.setText("");
                     txtState.setText("");
@@ -201,9 +179,7 @@ public class EmpleadosController implements Initializable {
                     txtPhone.setText("");
                     txtFax.setText("");
                     txtEmail.setText("");
-                    cmbReportsTo.setSelectionModel(null); 
-                    dpHireDate.setValue(null);
-                    dpBirthDate.setValue(null);
+                    cmbSupportRepId.setSelectionModel(null); 
                     actions.setVisible(true);
                     agregando = true;
                 }
@@ -212,16 +188,16 @@ public class EmpleadosController implements Initializable {
         btnBorrar.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                Empleados g = table.getSelectionModel().getSelectedItem();
-                if(empleadodao.delete(g.getEmployeeId())){
+                Clientes g = table.getSelectionModel().getSelectedItem();
+                if(clientesdao.delete(g.getCustomerId())){
                     Alert msg = new Alert(Alert.AlertType.INFORMATION);
                     msg.setTitle("Borrar");
                     msg.setHeaderText("Espotifai");
                     msg.setContentText("Empleado borrado correctamente");
                     Optional<ButtonType> respuesta = msg.showAndWait();
                     if(respuesta.get() == ButtonType.OK){
-                        datos = empleadodao.findAllObs();
-                        cmbReportsTo.setItems(datos);
+                        datos = clientesdao.findAllObs();
+                        cmbSupportRepId.setItems(datos);
                         table.setItems(datos);
                         agregando = false;
                         actions.setVisible(false);
@@ -236,13 +212,14 @@ public class EmpleadosController implements Initializable {
                 }
             }
         });
+        
         btnModificar.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                Empleados g = table.getSelectionModel().getSelectedItem();
+                Clientes g = table.getSelectionModel().getSelectedItem();
                 if(txtLastName.getText().trim().length() > 0 &&
                         txtFirstName.getText().trim().length() > 0 &&
-                        txtTitle.getText().trim().length() > 0 && 
+                        txtCompany.getText().trim().length() > 0 && 
                         txtAddress.getText().trim().length() > 0 &&
                         txtCity.getText().trim().length() > 0 &&
                         txtState.getText().trim().length() > 0 &&
@@ -251,15 +228,11 @@ public class EmpleadosController implements Initializable {
                         txtPhone.getText().trim().length() > 0 &&
                         txtFax.getText().trim().length() > 0 &&
                         txtEmail.getText().trim().length() > 0 &&
-                        cmbReportsTo.getSelectionModel() != null &&
-                        dpBirthDate.getValue() != null &&
-                        dpHireDate.getValue() != null){
-                        Empleados temp = (Empleados) cmbReportsTo.getSelectionModel().getSelectedItem();
-                        Date HireDate = Date.valueOf(dpHireDate.getValue());
-                        Date BirthDate = Date.valueOf(dpBirthDate.getValue());
+                        cmbSupportRepId.getSelectionModel() != null){
+                        Clientes temp = (Clientes) cmbSupportRepId.getSelectionModel().getSelectedItem();
                     g.setLastName(txtLastName.getText());
                     g.setFirstName(txtFirstName.getText());
-                    g.setTitle(txtTitle.getText());
+                    g.setCompany(txtCompany.getText());
                     g.setAddress(txtAddress.getText());
                     g.setCity(txtCity.getText());
                     g.setState(txtState.getText());
@@ -268,17 +241,15 @@ public class EmpleadosController implements Initializable {
                     g.setPhone(txtPhone.getText());
                     g.setFax(txtFax.getText());
                     g.setEmail(txtEmail.getText());
-                    g.setEmployeeId(temp.getEmployeeId());
-                    g.setBirthDate(BirthDate);
-                    g.setHireDate(HireDate);
-                    if(empleadodao.update(g)){
+                    g.setCustomerId(temp.getCustomerId());
+                    if(clientesdao.update(g)){
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Borrar");
                         msg.setHeaderText("Espotifai");
                         msg.setContentText("Empleado modificado correctamente");
                         Optional<ButtonType> respuesta = msg.showAndWait();
                         if(respuesta.get() == ButtonType.OK){
-                            table.setItems(empleadodao.findAllObs());
+                            table.setItems(clientesdao.findAllObs());
                             actions.setVisible(false);
                         }
                     }
