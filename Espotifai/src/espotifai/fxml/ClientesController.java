@@ -2,6 +2,7 @@ package espotifai.fxml;
 
 import database.MySQL;
 import database.dao.ClientesDAO;
+import database.dao.EmpleadosDAO;
 import espotifai.Clientes;
 import java.net.URL;
 import java.sql.Date;
@@ -44,11 +45,13 @@ public class ClientesController implements Initializable {
                 FaxCol,EmailCol,SupportRepIdCol;
     Boolean agregando = false;
     ObservableList datos;
+    ObservableList datosEmpleados;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         MySQL db = new MySQL();
         db.Connect();
         ClientesDAO clientesdao = new ClientesDAO(db.getConnection());
+        EmpleadosDAO empleadodao = new EmpleadosDAO(db.getConnection());
         CustomerIdCol = new TableColumn("ID");
         LastNameCol = new TableColumn("LastName");
         FirstNameCol = new TableColumn("FirstName");
@@ -77,7 +80,8 @@ public class ClientesController implements Initializable {
         SupportRepIdCol.setCellValueFactory(new PropertyValueFactory("SupportRepId"));
         table.getColumns().addAll(CustomerIdCol,LastNameCol,FirstNameCol,CompanyCol,AddressCol,CityCol,StateCol,CountryCol,PostalCodeCol,PhoneCol,FaxCol,EmailCol,SupportRepIdCol);
         datos = clientesdao.findAllObs();
-        cmbSupportRepId.setItems(datos);
+        datosEmpleados = empleadodao.findAllObs();
+        cmbSupportRepId.setItems(datosEmpleados);
         table.setItems(datos);
 
         
@@ -102,7 +106,7 @@ public class ClientesController implements Initializable {
                 for (int i=0; i<datos.size();i++){
                     Clientes tilin = (Clientes)datos.get(i);
                     if(g.getSupportRepId() == tilin.getSupportRepId()){
-                        cmbSupportRepId.getSelectionModel().clearAndSelect(g.getSupportRepId());
+                        cmbSupportRepId.getSelectionModel().clearAndSelect(tilin.getSupportRepId());
                     }
                 }
                 actions.setVisible(true);
@@ -149,7 +153,7 @@ public class ClientesController implements Initializable {
                         Optional<ButtonType> respuesta = msg.showAndWait();
                         if(respuesta.get() == ButtonType.OK){
                             datos = clientesdao.findAllObs();
-                            cmbSupportRepId.setItems(datos);
+                            cmbSupportRepId.setItems(datosEmpleados);
                             table.setItems(datos);
                             agregando = false;
                             actions.setVisible(false);
@@ -197,7 +201,7 @@ public class ClientesController implements Initializable {
                     Optional<ButtonType> respuesta = msg.showAndWait();
                     if(respuesta.get() == ButtonType.OK){
                         datos = clientesdao.findAllObs();
-                        cmbSupportRepId.setItems(datos);
+                        cmbSupportRepId.setItems(datosEmpleados);
                         table.setItems(datos);
                         agregando = false;
                         actions.setVisible(false);
