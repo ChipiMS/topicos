@@ -120,14 +120,9 @@ public class ClientesController implements Initializable {
                 if(agregando){
                     if(txtLastName.getText().trim().length() > 0 &&
                         txtFirstName.getText().trim().length() > 0 &&
-                        txtCompany.getText().trim().length() > 0 && 
                         txtAddress.getText().trim().length() > 0 &&
                         txtCity.getText().trim().length() > 0 &&
-                        txtState.getText().trim().length() > 0 &&
                         txtCountry.getText().trim().length() > 0 &&
-                        txtPostalCode.getText().trim().length() > 0 &&
-                        txtPhone.getText().trim().length() > 0 &&
-                        txtFax.getText().trim().length() > 0 &&
                         txtEmail.getText().trim().length() > 0 &&
                         cmbSupportRepId.getSelectionModel() != null){
                         
@@ -162,7 +157,7 @@ public class ClientesController implements Initializable {
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Guardar");
                         msg.setHeaderText("Espotifai");
-                        msg.setContentText("Hay campos faltantes");
+                        msg.setContentText("Hay campos obligatorios faltantes");
                         msg.show();
                         
                     }
@@ -221,14 +216,9 @@ public class ClientesController implements Initializable {
                 Clientes g = table.getSelectionModel().getSelectedItem();
                 if(txtLastName.getText().trim().length() > 0 &&
                         txtFirstName.getText().trim().length() > 0 &&
-                        txtCompany.getText().trim().length() > 0 && 
                         txtAddress.getText().trim().length() > 0 &&
                         txtCity.getText().trim().length() > 0 &&
-                        txtState.getText().trim().length() > 0 &&
                         txtCountry.getText().trim().length() > 0 &&
-                        txtPostalCode.getText().trim().length() > 0 &&
-                        txtPhone.getText().trim().length() > 0 &&
-                        txtFax.getText().trim().length() > 0 &&
                         txtEmail.getText().trim().length() > 0 &&
                         cmbSupportRepId.getSelectionModel() != null){
                     Empleados temp = (Empleados) cmbSupportRepId.getSelectionModel().getSelectedItem();
@@ -267,7 +257,7 @@ public class ClientesController implements Initializable {
                     Alert msg = new Alert(Alert.AlertType.INFORMATION);
                     msg.setTitle("Modificar");
                     msg.setHeaderText("Espotifai");
-                    msg.setContentText("Hay campos faltantes");
+                    msg.setContentText("Hay campos obligatorios faltantes");
                     msg.show();
                 }
             }
