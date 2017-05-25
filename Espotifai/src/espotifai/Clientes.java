@@ -4,17 +4,50 @@ public class Clientes {
     int CustomerId,SupportRepId;    
 
     public Clientes( int CustomerId, String LastName, String FirstName, String Company, String Address, String City, String State, String Country, String PostalCode, String Phone, String Fax, String Email, int SupportRepId) {
-        this.LastName = LastName;
-        this.FirstName = FirstName;
-        this.Company = Company;
-        this.Address = Address;
-        this.City = City;
-        this.State = State;
-        this.Country = Country;
-        this.PostalCode = PostalCode;
-        this.Phone = Phone;
-        this.Fax = Fax;
-        this.Email = Email;
+                if(LastName != null)
+            this.LastName = LastName;
+        else
+            this.LastName = "";
+        if(FirstName != null)
+            this.FirstName = FirstName;
+        else
+            this.FirstName = "";
+        if(Company != null)
+            this.Company = Company;
+        else
+            this.Company = "";
+        if(Address != null)
+            this.Address = Address;
+        else
+            this.Address = "";
+        if(City != null)
+            this.City = City;
+        else
+            this.City = "";
+        if(State != null)
+            this.State = State;
+        else
+            this.State = "";
+        if(Country != null)
+            this.Country = Country;
+        else
+            this.Country = "";
+        if(PostalCode != null)
+            this.PostalCode = PostalCode;
+        else
+            this.PostalCode = "";
+        if(Phone != null)
+            this.Phone = Phone;
+        else
+            this.Phone = "";
+        if(Fax != null)
+            this.Fax = Fax;
+        else
+            this.Fax = "";
+        if(Email != null)
+            this.Email = Email;
+        else
+            this.Email = "";
         this.CustomerId = CustomerId;
         this.SupportRepId = SupportRepId;
     }

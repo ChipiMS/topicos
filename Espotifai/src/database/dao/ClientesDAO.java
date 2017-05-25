@@ -137,7 +137,7 @@ public ObservableList<Clientes> findAll() {
             st.setString(10,clientes.getFax());
             st.setString(11,clientes.getEmail());
             st.setInt(12,clientes.getSupportRepId());
-            st.setInt(15,clientes.getCustomerId());
+            st.setInt(13,clientes.getCustomerId());
             st.execute();
             return true;
         } catch (Exception e) {

@@ -4,6 +4,7 @@ import database.MySQL;
 import database.dao.ClientesDAO;
 import database.dao.EmpleadosDAO;
 import espotifai.Clientes;
+import espotifai.Empleados;
 import java.net.URL;
 import java.sql.Date;
 import java.util.Optional;
@@ -83,7 +84,6 @@ public class ClientesController implements Initializable {
         datosEmpleados = empleadodao.findAllObs();
         cmbSupportRepId.setItems(datosEmpleados);
         table.setItems(datos);
-
         
         table.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
@@ -103,10 +103,10 @@ public class ClientesController implements Initializable {
                 txtPhone.setText(g.getPhone());
                 txtFax.setText(g.getFax());
                 txtEmail.setText(g.getEmail());
-                for (int i=0; i<datos.size();i++){
-                    Clientes tilin = (Clientes)datos.get(i);
-                    if(g.getSupportRepId() == tilin.getSupportRepId()){
-                        cmbSupportRepId.getSelectionModel().clearAndSelect(tilin.getSupportRepId());
+                for (int i=0; i < datosEmpleados.size();i++){
+                    Empleados empleado = (Empleados)datosEmpleados.get(i);
+                    if(g.getSupportRepId() == empleado.getEmployeeId()){
+                        cmbSupportRepId.getSelectionModel().clearAndSelect(i);
                     }
                 }
                 actions.setVisible(true);
@@ -132,7 +132,7 @@ public class ClientesController implements Initializable {
                         cmbSupportRepId.getSelectionModel() != null){
                         
                         
-                        Clientes temp = (Clientes) cmbSupportRepId.getSelectionModel().getSelectedItem();
+                        Empleados temp = (Empleados) cmbSupportRepId.getSelectionModel().getSelectedItem();
                         clientesdao.insert(new Clientes(
                         txtLastName.getText(),
                         txtFirstName.getText(),
@@ -145,7 +145,7 @@ public class ClientesController implements Initializable {
                         txtPhone.getText(),
                         txtFax.getText(),
                         txtEmail.getText(),
-                        temp.getSupportRepId()));
+                        temp.getEmployeeId()));
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Guardar");
                         msg.setHeaderText("Espotifai");
@@ -153,12 +153,11 @@ public class ClientesController implements Initializable {
                         Optional<ButtonType> respuesta = msg.showAndWait();
                         if(respuesta.get() == ButtonType.OK){
                             datos = clientesdao.findAllObs();
-                            cmbSupportRepId.setItems(datosEmpleados);
                             table.setItems(datos);
                             agregando = false;
                             actions.setVisible(false);
-                        
-                    }}
+                        }
+                    }
                     else{
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Guardar");
@@ -183,7 +182,7 @@ public class ClientesController implements Initializable {
                     txtPhone.setText("");
                     txtFax.setText("");
                     txtEmail.setText("");
-                    cmbSupportRepId.setSelectionModel(null); 
+                    cmbSupportRepId.getSelectionModel().clearSelection(); 
                     actions.setVisible(true);
                     agregando = true;
                 }
@@ -201,7 +200,6 @@ public class ClientesController implements Initializable {
                     Optional<ButtonType> respuesta = msg.showAndWait();
                     if(respuesta.get() == ButtonType.OK){
                         datos = clientesdao.findAllObs();
-                        cmbSupportRepId.setItems(datosEmpleados);
                         table.setItems(datos);
                         agregando = false;
                         actions.setVisible(false);
@@ -233,7 +231,7 @@ public class ClientesController implements Initializable {
                         txtFax.getText().trim().length() > 0 &&
                         txtEmail.getText().trim().length() > 0 &&
                         cmbSupportRepId.getSelectionModel() != null){
-                        Clientes temp = (Clientes) cmbSupportRepId.getSelectionModel().getSelectedItem();
+                    Empleados temp = (Empleados) cmbSupportRepId.getSelectionModel().getSelectedItem();
                     g.setLastName(txtLastName.getText());
                     g.setFirstName(txtFirstName.getText());
                     g.setCompany(txtCompany.getText());
@@ -245,7 +243,7 @@ public class ClientesController implements Initializable {
                     g.setPhone(txtPhone.getText());
                     g.setFax(txtFax.getText());
                     g.setEmail(txtEmail.getText());
-                    g.setCustomerId(temp.getCustomerId());
+                    g.setSupportRepId(temp.getEmployeeId());
                     if(clientesdao.update(g)){
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Borrar");

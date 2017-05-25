@@ -117,9 +117,9 @@ public class EmpleadosController implements Initializable {
                 txtFax.setText(g.getFax());
                 txtEmail.setText(g.getEmail());
                 for (int i=0; i<datos.size();i++){
-                    Empleados tilin = (Empleados)datos.get(i);
-                    if(g.getReportsTo() == tilin.getReportsTo()){
-                        cmbReportsTo.getSelectionModel().clearAndSelect(g.getReportsTo());
+                    Empleados reportsTo = (Empleados)datos.get(i);
+                    if(g.getReportsTo() == reportsTo.getEmployeeId()){
+                        cmbReportsTo.getSelectionModel().clearAndSelect(i);
                     }
                 }
                 dpBirthDate.setValue(LOCAL_DATE(g.getBirthDate().toString()));
@@ -201,7 +201,7 @@ public class EmpleadosController implements Initializable {
                     txtPhone.setText("");
                     txtFax.setText("");
                     txtEmail.setText("");
-                    cmbReportsTo.setSelectionModel(null); 
+                    cmbReportsTo.getSelectionModel().clearSelection(); 
                     dpHireDate.setValue(null);
                     dpBirthDate.setValue(null);
                     actions.setVisible(true);
