@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.ArtistasAlbumsController">
+    <VBox spacing="10"  >
+        <HBox spacing="10">
+            <VBox >
+                <Label >Artistas</Label>
+                <TableView prefWidth="290"  fx:id="tvArtist">
+                </TableView>
+            </VBox>
+            <VBox >
+                <Label >Albums</Label>
+                <TableView prefWidth="290" fx:id="tvAlbums">
+                </TableView>
+            </VBox>
+        </HBox>
+        <GridPane fx:id="actions" visible="true" >
+            <Label text="LastName" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtLastName" GridPane.columnIndex="1" GridPane.rowIndex="0"/> 
+            <Label text="FirstName" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtFirstName" GridPane.columnIndex="3" GridPane.rowIndex="0"/> 
+            <Label text="Company" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtCompany" GridPane.columnIndex="5" GridPane.rowIndex="0"/> 
+        </GridPane>
+        <HBox>
+            <Button fx:id="btnAgregar" text="Agregar"></Button>
+            <Button fx:id="btnModificar" text="Modificar" disable="true" ></Button>
+            <Button fx:id="btnBorrar" text="Borrar" disable="true" ></Button>
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -53,7 +53,7 @@ public class HomeController implements Initializable {
             if(event.getSource() == menuEmpleados){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
-                try {
+                try {//Hobbit
                     rootConsultaPersonas = loader.load(getClass().getResource("Empleados.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
@@ -66,7 +66,7 @@ public class HomeController implements Initializable {
             if(event.getSource() == menuClientes){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
-                try {
+                try {//Hobbit
                     rootConsultaPersonas = loader.load(getClass().getResource("Clientes.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
@@ -76,11 +76,11 @@ public class HomeController implements Initializable {
                     e.printStackTrace();
                 }
             }
-            /*if(event.getSource() == menuArtistasAlbums){
+            if(event.getSource() == menuArtistasAlbums){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
                 try {
-                    rootConsultaPersonas = loader.load(getClass().getResource(".fxml"));
+                    rootConsultaPersonas = loader.load(getClass().getResource("ArtistasAlbums.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
                     stage.setScene(scene);
@@ -88,11 +88,11 @@ public class HomeController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }*/
+            }
             if(event.getSource() == menuGeneros){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
-                try {
+                try {//Chino
                     rootConsultaPersonas = loader.load(getClass().getResource("Genero.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
@@ -105,7 +105,7 @@ public class HomeController implements Initializable {
             if(event.getSource() == menuTipoMedios){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
-                try {
+                try {//Chino
                     rootConsultaPersonas = loader.load(getClass().getResource("TipoMedio.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
@@ -131,7 +131,7 @@ public class HomeController implements Initializable {
             if(event.getSource() == menuCrearLista){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
-                try {
+                try {//Hobbit
                     rootConsultaPersonas = loader.load(getClass().getResource("PlayList.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
@@ -154,10 +154,10 @@ public class HomeController implements Initializable {
                     e.printStackTrace();
                 }
             }*/
-            /*if(event.getSource() == menuReporteEmpleadso){
+            /*if(event.getSource() == menuReporteEmpleados){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
-                try {
+                try {//Hobbit
                     rootConsultaPersonas = loader.load(getClass().getResource(".fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
@@ -170,7 +170,7 @@ public class HomeController implements Initializable {
             if(event.getSource() == menuReportePaises){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
-                try {
+                try {//Chino
                     rootConsultaPersonas = loader.load(getClass().getResource("Paises.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
