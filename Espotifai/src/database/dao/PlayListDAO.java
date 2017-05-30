@@ -3,7 +3,9 @@ package database.dao;
 import espotifai.PlayList;
 import espotifai.PlayListTrack;
 import espotifai.TipoMedio;
+import espotifai.Track;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,14 +35,36 @@ public class PlayListDAO {
         }
         return listas;
     }
-        public ObservableList<PlayListTrack> findAllCanciones(int TrackId) {
-        ObservableList<PlayListTrack> listas = FXCollections.observableArrayList();
+        public ObservableList<Track> findAllCanciones(int TrackId) {
+        ObservableList<Track> listas = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM PlayListTrack where PlayListId = "+TrackId+"";
-            Statement st = conn.createStatement();
+            String query = "select * from Track where TrackId in (select TrackId from PlaylistTrack where PlaylistId = "+TrackId+");";
+            PreparedStatement st = conn.prepareStatement(query);
+            //st.setInt(1, TrackId);
             ResultSet rs = st.executeQuery(query);
             while(rs.next()) {
-                listas.add(new PlayListTrack(rs.getInt("PlayListId"), rs.getInt("TrackId")));
+                listas.add(new Track(rs.getInt("TrackId"),rs.getInt("AlbumId"),rs.getInt("MediaTypeId"),rs.getInt("GenreId"),rs.getInt("Milliseconds"),
+                rs.getInt("Bytes"),rs.getString("Name"),rs.getString("Composer"),rs.getDouble("UnitPrice"))); 
+            }
+            rs.close();
+            st.close();
+ 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return listas;
+    }
+        public ObservableList<Track> findAllCancionesFaltantes(int TrackId) {
+        ObservableList<Track> listas = FXCollections.observableArrayList();
+        try {
+            String query = "select * from Track where TrackId not in (select TrackId from PlaylistTrack where PlaylistId = "+TrackId+");";
+            PreparedStatement st = conn.prepareStatement(query);
+            //st.setInt(1, TrackId);
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()) {
+                listas.add(new Track(rs.getInt("TrackId"),rs.getInt("AlbumId"),rs.getInt("MediaTypeId"),rs.getInt("GenreId"),rs.getInt("Milliseconds"),
+                rs.getInt("Bytes"),rs.getString("Name"),rs.getString("Composer"),rs.getDouble("UnitPrice"))); 
             }
             rs.close();
             st.close();
