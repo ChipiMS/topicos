@@ -40,6 +40,11 @@ public class TipoMedioController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 TipoMedio g = list.getSelectionModel().getSelectedItem();
+                if(g == null){
+                    actions.setVisible(false);
+                    agregando = false;
+                    return;
+                }
                 btnModificar.setDisable(false);
                 btnBorrar.setDisable(false);
                 txtNombre.setText(g.getName());
