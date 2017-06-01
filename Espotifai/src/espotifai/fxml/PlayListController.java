@@ -221,16 +221,16 @@ public class PlayListController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 Track g = canciones.getSelectionModel().getSelectedItem();
-                if(playLdao.delete(g.getTrackId())){
+                if(playLdao.deleteTrack(g.getTrackId())){
                     Alert msg = new Alert(Alert.AlertType.INFORMATION);
                     msg.setTitle("Borrar");
                     msg.setHeaderText("Espotifai");
-                    msg.setContentText("PlayList borrada correctamente");
+                    msg.setContentText("Cancion borrada correctamente");
                     Optional<ButtonType> respuesta = msg.showAndWait();
                     if(respuesta.get() == ButtonType.OK){
                         listas.setItems(playLdao.findAllPlayList());
-                        agregando = false;
-                        btnBorrarLis.setVisible(false);
+                        canciones.setItems(playLdao.findAllCanciones(pl));
+                        faltantes.setItems(playLdao.findAllCancionesFaltantes(pl));
                     }
                 }
                 else{
