@@ -7,6 +7,9 @@ public class PlayListTrack {
         this.id = id;
         this.trackId = trackId;
     }
+    public PlayListTrack(int trackId){
+        this.trackId = trackId;
+    }
 
     public int getId() {
         return id;

@@ -6,27 +6,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.PlayListController">
-    <HBox prefWidth="800.0">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.PlayListController">
+    <HBox>
         <ListView fx:id="listas">
-            
+
         </ListView>
-        <VBox>
-            <TableView fx:id="canciones">
-
-            </TableView>
-            <TableView fx:id="faltantes">
-
-            </TableView>
-            <HBox fx:id="actions" visible="false" >
+        <Button fx:id="btnBorrarLis" text="Borrar Lista" visible="false"></Button>
+        <Button fx:id="btnNueva" text="Nueva PlayList"></Button>
+        <HBox fx:id="actions" visible="false" >
                 <Label text="Nombre" />
                 <TextField fx:id="txtNombre" />
             </HBox>
+        <VBox prefHeight="200">
+            <TableView fx:id="canciones" prefWidth="800"> 
+
+            </TableView>
+            <TableView fx:id="faltantes" prefWidth="800">
+
+            </TableView>
             <HBox>
-                <Button fx:id="btnNueva" text="Nueva PlayList"></Button>
                 <Button fx:id="btnAgregar" text="Agregar"></Button>
                 <Button fx:id="btnBorrar" text="Borrar"></Button>
             </HBox>
         </VBox>
-    </HBox>
+        </HBox>    
 </AnchorPane>

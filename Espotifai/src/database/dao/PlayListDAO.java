@@ -75,4 +75,61 @@ public class PlayListDAO {
         }
         return listas;
     }
+        public Boolean delete(int PlayId) {
+        try {
+            String query = "delete from PlayList where playListId = ?";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, PlayId);
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    } 
+        public Boolean deleteTrack(int trackId) {
+        try {
+            String query = "delete from PlayListTrack where TrackId = ?";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, trackId);
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+        public Boolean insert(PlayList playList) {
+        try {
+            String query = "insert into PlayList "
+                    + " (Name)"
+                    + " values (?)";
+            PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+            st.setString(1, playList.getName());
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        
+        return false;
+    }
+        public Boolean insertTrack(PlayListTrack playList) {
+        try {
+            String query = "insert into PlayListTrack "
+                    + " (playListId, trackId)"
+                    + " values (?, ?)";
+            PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+            st.setInt(1, playList.getId());
+            st.setInt(2, playList.getTrackId());
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        
+        return false;
+    }
 }

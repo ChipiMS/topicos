@@ -182,8 +182,7 @@ public class ClientesController implements Initializable {
                     agregando = true;
                 }
             }
-        });
-        btnBorrar.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        });btnBorrar.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
                 Clientes g = table.getSelectionModel().getSelectedItem();
@@ -209,6 +208,7 @@ public class ClientesController implements Initializable {
                 }
             }
         });
+        
         
         btnModificar.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override

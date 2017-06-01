@@ -8,6 +8,9 @@ public class PlayList {
         this.id = id;
         this.name = name;
     }
+    public PlayList(String name){
+        this.name = name;
+    }
 
     public int getId() {
         return id;
