@@ -59,7 +59,7 @@ public class AlbumDAO {
     public Boolean insert(Album album) {
         try {
             String query = "insert into Album "
-                    + " (Name, ArtistId)"
+                    + " (Title, ArtistId)"
                     + " values (?,?)";
             PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             st.setString(1,album.getTitle());
@@ -77,7 +77,7 @@ public class AlbumDAO {
     public Boolean update(Album album) {
         try {
             String query = "update album "
-                    + " set Name = ?"
+                    + " set Title = ?, ArtistId = ?"
                     + " where AlbumId = ?";
             PreparedStatement st =  conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             st.setString(1,album.getTitle());

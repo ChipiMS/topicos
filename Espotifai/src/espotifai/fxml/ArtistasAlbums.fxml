@@ -6,32 +6,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.ArtistasAlbumsController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.ArtistasAlbumsController">
     <VBox spacing="10"  >
         <HBox spacing="10">
             <VBox >
                 <Label >Artistas</Label>
-                <TableView prefWidth="290"  fx:id="tvArtist">
+                <TableView prefWidth="280"  fx:id="tvArtist">
                 </TableView>
+                <!--<Label text="Nombre"/>
+                <TextField fx:id="txtNombre"/>-->
+                <GridPane fx:id="actions1" visible="false" >
+                    <Label text="Nombre" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="txtNombreAr" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label GridPane.columnIndex="0" GridPane.rowIndex="1"/>  
+                </GridPane>
+                <HBox>
+                    <Button fx:id="btnAgregarAr" text="Agregar"></Button>
+                    <Button fx:id="btnModificarAr" text="Modificar" disable="true" ></Button>
+                    <Button fx:id="btnBorrarAr" text="Borrar" disable="true" ></Button>
+                </HBox>
             </VBox>
             <VBox >
                 <Label >Albums</Label>
-                <TableView prefWidth="290" fx:id="tvAlbums">
+                <TableView prefWidth="430" fx:id="tvAlbums">
                 </TableView>
+                <GridPane fx:id="actions2" visible="false" >
+                    <Label text="Titulo" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="txtTitle" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Id Album" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="txtIdArtist" disable="true"  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                </GridPane>
+                <HBox>
+                    <Button fx:id="btnAgregarAl" text="Agregar"></Button>
+                    <Button fx:id="btnModificarAl" text="Modificar" disable="true" ></Button>
+                    <Button fx:id="btnBorrarAl" text="Borrar" disable="true" ></Button>
+                </HBox>
             </VBox>
         </HBox>
-        <GridPane fx:id="actions" visible="true" >
-            <Label text="LastName" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtLastName" GridPane.columnIndex="1" GridPane.rowIndex="0"/> 
-            <Label text="FirstName" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtFirstName" GridPane.columnIndex="3" GridPane.rowIndex="0"/> 
-            <Label text="Company" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-            <TextField fx:id="txtCompany" GridPane.columnIndex="5" GridPane.rowIndex="0"/> 
-        </GridPane>
-        <HBox>
-            <Button fx:id="btnAgregar" text="Agregar"></Button>
-            <Button fx:id="btnModificar" text="Modificar" disable="true" ></Button>
-            <Button fx:id="btnBorrar" text="Borrar" disable="true" ></Button>
-        </HBox>
+        
+        
     </VBox>
 </AnchorPane>
