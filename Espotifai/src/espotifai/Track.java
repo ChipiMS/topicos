@@ -16,6 +16,17 @@ public class Track {
         this.composer = composer;
         this.unitPrice = unitPrice;
     }
+    
+    public Track(int albumId, int mediaTypeId, int genreId, int milliseconds, int bytes, String name, String composer, Double unitPrice) {
+        this.albumId = albumId;
+        this.mediaTypeId = mediaTypeId;
+        this.genreId = genreId;
+        this.milliseconds = milliseconds;
+        this.bytes = bytes;
+        this.name = name;
+        this.composer = composer;
+        this.unitPrice = unitPrice;
+    }
 
     public int getTrackId() {
         return trackId;

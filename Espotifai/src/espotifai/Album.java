@@ -48,6 +48,12 @@ public class Album {
     public void setArtistId(int artistId) {
         this.artistId = artistId;
     }
+
+    @Override
+    public String toString() {
+        return this.title;
+    }
+    
     
     
 }
