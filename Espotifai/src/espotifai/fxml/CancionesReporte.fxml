@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.CancionesReporteController">
+    <VBox prefWidth="1150" >
+        <TableView fx:id="table">
+            
+        </TableView>
+        <GridPane fx:id="actions" visible="false" >
+            <!--//int trackId, int albumId, int mediaTypeId, int genreId, int milliseconds, 
+            int bytes, String name, String composer, Double unitPrice-->
+            <Label text="Nombre" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="0"/> 
+            <Label text="Album" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cmbAlbum" GridPane.columnIndex="3" GridPane.rowIndex="0"/> 
+            <Label text="Tipo de Medio" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="cmbMediaType" GridPane.columnIndex="1" GridPane.rowIndex="1"/> 
+            <Label text="Genero" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="cmbGenre" GridPane.columnIndex="3" GridPane.rowIndex="1"/> 
+            <Label text="Compositor" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtComposer" GridPane.columnIndex="1" GridPane.rowIndex="2"/> 
+            <Label text="Milisegundos" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtMilliseconds" GridPane.columnIndex="3" GridPane.rowIndex="2"/> 
+            <Label text="Bytes" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="txtBytes" GridPane.columnIndex="1" GridPane.rowIndex="3"/> 
+            <Label text="Precio Unitario" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+            <TextField fx:id="txtUnitPrice" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+        </GridPane>
+        <HBox >
+            <Label text="Dirección y nombre el PDF:"  />
+            <TextField fx:id="dir" text="C:/tmp/Canciones" ></TextField>
+            <Button fx:id="btnImprimir"  text="Imprimir PDF" />
+        </HBox>
+    </VBox>
+</AnchorPane>
