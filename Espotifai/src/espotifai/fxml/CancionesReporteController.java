@@ -116,7 +116,7 @@ public class CancionesReporteController implements Initializable {
                             table.addHeaderCell(new Cell().add(new Paragraph(track.getAlbumId() + "")));
                             table.addHeaderCell(new Cell().add(new Paragraph(track.getMediaTypeId() + "")));
                             table.addHeaderCell(new Cell().add(new Paragraph(track.getGenreId() + "")));
-                            table.addHeaderCell(new Cell().add(new Paragraph(track.getComposer())));
+                            table.addHeaderCell(new Cell().add(new Paragraph((track.getComposer() == null ? "" : track.getComposer()))));
                             table.addHeaderCell(new Cell().add(new Paragraph(track.getMilliseconds() + "")));
                             table.addHeaderCell(new Cell().add(new Paragraph(track.getBytes() + "")));
                             table.addHeaderCell(new Cell().add(new Paragraph(track.getUnitPrice() + "")));

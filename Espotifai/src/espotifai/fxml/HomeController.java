@@ -26,7 +26,7 @@ public class HomeController implements Initializable {
     @FXML
     MenuItem menuComprar;
     @FXML
-    MenuItem menuReporteEmpleadso;
+    MenuItem menuReporteEmpleados;
     @FXML
     MenuItem menuReportePaises;
     @FXML
@@ -42,7 +42,7 @@ public class HomeController implements Initializable {
         menuPistas.setOnAction(listenerMenuItems);
         menuCrearLista.setOnAction(listenerMenuItems);
         menuComprar.setOnAction(listenerMenuItems);
-        menuReporteEmpleadso.setOnAction(listenerMenuItems);
+        menuReporteEmpleados.setOnAction(listenerMenuItems);
         menuReportePaises.setOnAction(listenerMenuItems);
         menuReporteCanciones.setOnAction(listenerMenuItems);
         menuEmpleados.setOnAction(listenerMenuItems);
@@ -154,11 +154,11 @@ public class HomeController implements Initializable {
                     e.printStackTrace();
                 }
             }
-            /*if(event.getSource() == menuReporteEmpleados){
+            if(event.getSource() == menuReporteEmpleados){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;
                 try {//Hobbit
-                    rootConsultaPersonas = loader.load(getClass().getResource(".fxml"));
+                    rootConsultaPersonas = loader.load(getClass().getResource("ReporteEmpleados.fxml"));
                     Scene scene = new Scene(rootConsultaPersonas);
                     Stage stage = new Stage();
                     stage.setScene(scene);
@@ -166,7 +166,7 @@ public class HomeController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }*/
+            }
             if(event.getSource() == menuReportePaises){
                 FXMLLoader loader = new FXMLLoader();
                 Parent rootConsultaPersonas = null;

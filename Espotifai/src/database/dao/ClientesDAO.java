@@ -15,10 +15,31 @@ public class ClientesDAO {
         this.conn = conn;
     }
     
-public ObservableList<Clientes> findAll() {
+    public ObservableList<Clientes> findAll() {
         ObservableList<Clientes> clientes = FXCollections.observableArrayList();
         try {
             String query = "SELECT * FROM Customer";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()) {
+                clientes.add(new Clientes(rs.getInt("CustomerId"),rs.getString("LastName"),rs.getString("FirstName"),rs.getString("Company"),rs.getString("Address"),
+                                            rs.getString("City"),rs.getString("State"),rs.getString("Country"),rs.getString("PostalCode"),
+                                            rs.getString("Phone"),rs.getString("Fax"),rs.getString("Email"),
+                                            rs.getInt("SupportRepId"))); 
+            }
+            rs.close();
+            st.close();
+ 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return clientes;
+    }
+    public ObservableList<Clientes> findAllByEmployee(int employeeId) {
+        ObservableList<Clientes> clientes = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT * FROM Customer where SupportRepId = "+employeeId;
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while(rs.next()) {

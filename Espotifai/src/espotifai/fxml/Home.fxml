@@ -31,7 +31,7 @@
             </Menu>
             <Menu text="Reportes">
                 <items>
-                    <MenuItem fx:id="menuReporteEmpleadso" text="Empleados" />
+                    <MenuItem fx:id="menuReporteEmpleados" text="Empleados" />
                     <MenuItem fx:id="menuReportePaises" text="Países" />
                     <MenuItem fx:id="menuReporteCanciones" text="Canciones" />
                 </items>

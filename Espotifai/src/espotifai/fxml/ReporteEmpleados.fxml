@@ -6,10 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1400.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.ReporteEmpleadosController">
-    <VBox prefWidth="1400.0">
-        <TableView fx:id="tvEmpleados" ></TableView>
-        <HBox >
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="1400.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espotifai.fxml.ReporteEmpleadosController">
+    <VBox prefWidth="1400.0" prefHeight="450.0">
+        <TableView fx:id="tvEmpleados"  prefHeight="200.0"></TableView>
+        <TableView fx:id="tvClientes" prefHeight="200.0"></TableView>
+        <HBox prefHeight="50.0">
             <Label text="Dirección y nombre el PDF:"  />
             <TextField fx:id="dir" text="C:/tmp/Empleados" ></TextField>
             <Button fx:id="btnImprimir"  text="Imprimir PDF" />
