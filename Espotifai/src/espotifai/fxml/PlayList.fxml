@@ -18,9 +18,11 @@
                 <TextField fx:id="txtNombre" />
             </HBox>
         <VBox prefHeight="200">
+            <Label fx:id="nombrePl" text="Nombre PlayList" />
             <TableView fx:id="canciones" prefWidth="800"> 
 
             </TableView>
+            <Label text="Canciones" />
             <TableView fx:id="faltantes" prefWidth="800">
 
             </TableView>
