@@ -133,19 +133,19 @@ public class ReporteEmpleadosController implements Initializable {
                         PdfDocument pdf = new PdfDocument(writer);
                         Document document = new Document(pdf,new PageSize(PageSize.LETTER));
                         document.add(new Paragraph("Empleados y sus clientes"));
-                        for(int j=0;j<empleados.size();j++){
-                            Table table = new Table(3);
-                            table.addHeaderCell(new Cell().add(new Paragraph("País")));
-                            table.addHeaderCell(new Cell().add(new Paragraph("Ventas")));
-                            table.addHeaderCell(new Cell().add(new Paragraph("Total")));
-                            for(int i=0;i<paises.size();i++){
-                                Paises pais = paises.get(i);
-                                table.addHeaderCell(new Cell().add(new Paragraph(pais.getName())));
-                                table.addHeaderCell(new Cell().add(new Paragraph(pais.getInvoices())));
-                                table.addHeaderCell(new Cell().add(new Paragraph(pais.getTotal())));
-                            }
-                        }
-                        document.add(table);
+//                        for(int j=0;j<empleados.size();j++){
+//                            Table table = new Table(3);
+//                            table.addHeaderCell(new Cell().add(new Paragraph("País")));
+//                            table.addHeaderCell(new Cell().add(new Paragraph("Ventas")));
+//                            table.addHeaderCell(new Cell().add(new Paragraph("Total")));
+//                            for(int i=0;i<paises.size();i++){
+//                                Paises pais = paises.get(i);
+//                                table.addHeaderCell(new Cell().add(new Paragraph(pais.getName())));
+//                                table.addHeaderCell(new Cell().add(new Paragraph(pais.getInvoices())));
+//                                table.addHeaderCell(new Cell().add(new Paragraph(pais.getTotal())));
+//                            }
+//                        }
+//                        document.add(table);
                         document.close();
                         Alert msg = new Alert(Alert.AlertType.INFORMATION);
                         msg.setTitle("Paises");
